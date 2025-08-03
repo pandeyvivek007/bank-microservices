@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to QA APIs for Accounts Service"
+  contactDetails:
+    email: "pandey@gmail.com"
+    name: "Sumit Pandey"
+  onCallSupport:
+    - (+91) 1234567891
+    - (+91) 9876543211

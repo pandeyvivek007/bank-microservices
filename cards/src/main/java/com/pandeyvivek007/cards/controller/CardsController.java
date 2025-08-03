@@ -1,6 +1,7 @@
 package com.pandeyvivek007.cards.controller;
 
 import com.pandeyvivek007.cards.dto.CardDto;
+import com.pandeyvivek007.cards.dto.CardsContactInfoDto;
 import com.pandeyvivek007.cards.dto.ErrorResponseDto;
 import com.pandeyvivek007.cards.dto.ResponseDto;
 import com.pandeyvivek007.cards.exception.ResourceNotFoundException;
@@ -15,6 +16,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +30,22 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class CardsController {
 
+
+    private final ICardService iCardService;
+
+    public CardsController(ICardService iCardService) {
+        this.iCardService = iCardService;
+    }
+
+    @Value("${build.version}")
+    private String buildVersion;
+
     @Autowired
-    private ICardService iCardService;
+    private CardsContactInfoDto cardsContactInfoDto;
+
     @Operation(
             summary = "Create Card REST API",
             description = "REST API to create new Card inside EazyBank"
@@ -158,5 +170,53 @@ public class CardsController {
         } else {
             throw new ResourceNotFoundException("Card", "mobileNumber", mobileNumber);
         }
+    }
+
+
+    @Operation(
+            summary = "Fetch build version of REST API",
+            description = "REST API to fetch build version of cards service"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/build-info")
+    public ResponseEntity<String> getBuildVersion() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(buildVersion);
+    }
+
+
+    @Operation(
+            summary = "Fetch contact details of cards REST API",
+            description = "REST API to fetch contact details"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/contact-info")
+    public ResponseEntity<CardsContactInfoDto> cardsContactInfo() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(cardsContactInfoDto);
     }
 }

@@ -14,3 +14,22 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+        - "application_qa.yml"
+        - "application_prod.yml"
+  profiles:
+    active:
+      - "qa"
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Accounts Service"
+  contactDetails:
+    email: "pandey@gmail.com"
+    name: "Vivek Pandey"
+  onCallSupport:
+    - (+91) 1234567890
+    - (+91) 9876543210

@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to QA APIs for Cards Service"
+  contactDetails:
+    email: "vivek@gmail.com"
+    name: "Aman Pandey"
+  onCallSupport:
+    - (+91) 1234567891
+    - (+91) 9876543211
