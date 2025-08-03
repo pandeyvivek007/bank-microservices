@@ -1,0 +1,40 @@
+services:
+  accounts:
+    image: "pandeyvivek007/accounts:s4"
+    container_name: accounts-ms
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    networks:
+      - pandeyvivek007
+  loans:
+    image: "pandeyvivek007/loans:s4"
+    container_name: loans-ms
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    networks:
+      - pandeyvivek007
+  cards:
+    image: "pandeyvivek007/cards:s4"
+    container_name: cards-ms
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    networks:
+      - pandeyvivek007
+networks:
+  pandeyvivek007:
+    driver: "bridge"
