@@ -1,13 +1,8 @@
-spring:
-  config:
-    activate:
-      on-profile: "qa"
-
 
 build:
   version: "2.0"
 
-accounts:
+cards:
   message: "Welcome to QA APIs for Cards Service"
   contactDetails:
     email: "vivek@gmail.com"

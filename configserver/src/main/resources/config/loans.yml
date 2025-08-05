@@ -1,0 +1,13 @@
+
+build:
+    version: "3.0"
+
+
+loans:
+  message: "Welcome to APIs for Loans Service"
+  contactDetails:
+    email: "vivek@gmail.com"
+    name: "Aman Pandey"
+  onCallSupport:
+    - (+91) 1234567891
+    - (+91) 9876543211

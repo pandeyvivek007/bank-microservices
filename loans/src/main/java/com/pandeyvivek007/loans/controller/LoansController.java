@@ -191,7 +191,7 @@ public class LoansController {
             )
     }
     )
-    @GetMapping("/build-version")
+    @GetMapping("/build-info")
     public ResponseEntity<String> getVersionInfo() {
         return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
     }

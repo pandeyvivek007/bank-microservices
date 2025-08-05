@@ -1,16 +1,11 @@
-spring:
-  config:
-    activate:
-      on-profile: "prod"
-
 
 build:
   version: "1.0"
 
 accounts:
-  message: "Welcome to Prod APIs for Cards Service"
+  message: "Welcome to Prod APIs for Accounts Service"
   contactDetails:
-    email: "vivrk@gmail.com"
+    email: "pandey@gmail.com"
     name: "Rohit Pandey"
   onCallSupport:
     - (+91) 1234567895

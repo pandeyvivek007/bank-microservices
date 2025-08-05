@@ -1,14 +1,8 @@
-spring:
-  config:
-    activate:
-      on-profile: "prod"
-
-
 build:
   version: "1.0"
 
-loans:
-  message: "Welcome to Prod APIs for Loans Service"
+cards:
+  message: "Welcome to Prod APIs for Cards Service"
   contactDetails:
     email: "vivrk@gmail.com"
     name: "Rohit Pandey"

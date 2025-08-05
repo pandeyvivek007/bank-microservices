@@ -1,0 +1,12 @@
+
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to Prod APIs for Loans Service"
+  contactDetails:
+    email: "vivrk@gmail.com"
+    name: "Rohit Pandey"
+  onCallSupport:
+    - (+91) 1234567895
+    - (+91) 9876543215

@@ -1,37 +1,29 @@
 server:
   port: 8090
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
-  h2:
-    console:
-      enabled: true
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
+  application:
+    name: "loans"
   profiles:
-    active:
-      - "qa"
+    active: "prod"
+  datasource:
+    url: jdbc:mysql://localhost:3308/loansdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071"
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
-build:
-    version: "3.0"
-
-
-
-loans:
-  message: "Welcome to APIs for Loans Service"
-  contactDetails:
-    email: "vivek@gmail.com"
-    name: "Aman Pandey"
-  onCallSupport:
-    - (+91) 1234567891
-    - (+91) 9876543211
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
