@@ -1,6 +1,7 @@
 package com.pandeyvivek007.accounts.mapper;
 
 import com.pandeyvivek007.accounts.dto.AccountsDto;
+import com.pandeyvivek007.accounts.dto.CustomerDetailsDto;
 import com.pandeyvivek007.accounts.dto.CustomerDto;
 import com.pandeyvivek007.accounts.entity.Customer;
 
@@ -38,4 +39,12 @@ public class CustomerMapper {
 
         return customerDto;
     }
+
+    public static CustomerDetailsDto mapToCustomerDetailsDto(Customer customer, CustomerDetailsDto customerDetailsDto) {
+        customerDetailsDto.setName(customer.getName());
+        customerDetailsDto.setEmail(customer.getEmail());
+        customerDetailsDto.setMobileNumber(customer.getMobileNumber());
+        return customerDetailsDto;
+    }
+
 }

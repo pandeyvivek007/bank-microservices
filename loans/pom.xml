@@ -72,6 +72,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
@@ -139,7 +148,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>pandeyvivek007/${project.artifactId}:s7</image>
+						<image>pandeyvivek007/${project.artifactId}:s8</image>
 					</to>
 				</configuration>
 			</plugin>
