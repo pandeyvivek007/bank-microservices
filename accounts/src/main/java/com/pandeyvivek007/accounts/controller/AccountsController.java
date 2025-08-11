@@ -49,10 +49,11 @@ public class AccountsController {
 
     @Autowired
     private Environment environment;
-
+    // This is used to fetch the contact information from the application properties
     @Autowired
     private AccountsContactInfoDto accountsContactInfoDto;
 
+    // This endpoint is used to create a new customer account
     @Operation(
             summary = "Create a new customer account",
             description = "This endpoint allows you to create a new customer account with the provided details."
