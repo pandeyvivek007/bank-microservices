@@ -29,20 +29,28 @@ spring:
 #      mode: always
   config:
     import: "optional:configserver:http://localhost:8071"
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
+#  rabbitmq:
+#    host: "localhost"
+#    port: 5672
+#    username: "guest"
+#    password: "guest"
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
   endpoint:
     shutdown:
       access: unrestricted
+    health:
+      probes:
+        enabled: true
   info:
     env:
       enabled: true
@@ -63,4 +71,8 @@ info:
     description: "Accounts Service"
     version: "1.0.0"
 
-
+logging:
+  level:
+    com:
+      pandeyvivek007:
+        accounts: DEBUG
