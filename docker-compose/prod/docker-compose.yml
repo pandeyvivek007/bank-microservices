@@ -29,32 +29,32 @@ services:
   #      file: common-config.yml
   #      service: microservice-db-config
 
-  #  rabbit:
-  #    image: rabbitmq:3.13-management
-  #    hostname: rabbitmq
-  #    ports:
-  #      - "5672:5672"
-  #      - "15672:15672"
-  #    healthcheck:
-  #      test: rabbitmq-diagnostics check_port_connectivity
-  #      interval: 10s
-  #      timeout: 5s
-  #      retries: 10
-  #      start_period: 5s
-  #    extends:
-  #      file: common-config.yml
-  #      service: microservice-base-config
-  #    environment:
-  #      SPRING_RABBITMQ_HOST: "rabbit"
+  rabbit:
+    image: rabbitmq:3.13-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit"
 
   configserver:
-    image: "pandeyvivek007/configserver:s9"
+    image: "pandeyvivek007/configserver:s8"
     container_name: configserver-ms
     ports:
       - "8071:8071"
-    #    depends_on:
-    #      rabbit:
-    #        condition: service_healthy
+    depends_on:
+      rabbit:
+        condition: service_healthy
     healthcheck:
       test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -66,7 +66,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "pandeyvivek007/eurekaserver:s9"
+    image: "pandeyvivek007/eurekaserver:s8"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -82,39 +82,12 @@ services:
     environment:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
-  gatewayserver:
-    image: "pandeyvivek007/gatewayserver:s9"
-    container_name: gatewayserver-ms
-    ports:
-      - "8072:8072"
-    depends_on:
-      accounts:
-        condition: service_healthy
-      cards:
-        condition: service_healthy
-      loans:
-        condition: service_healthy
-    #      cardsdb:
-    #        condition: service_healthy
-    environment:
-      SPRING_APPLICATION_NAME: "gatewayserver"
-    #      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
-    extends:
-      file: common-config.yml
-      service: microservice-eureka-config
-
 
   accounts:
-    image: "pandeyvivek007/accounts:s9"
+    image: "pandeyvivek007/accounts:s8"
     container_name: accounts-ms
     ports:
       - "8080:8080"
-    healthcheck:
-      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
     #      accountsdb:
     #        condition: service_healthy
     environment:
@@ -125,16 +98,10 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "pandeyvivek007/loans:s9"
+    image: "pandeyvivek007/loans:s8"
     container_name: loans-ms
     ports:
       - "8090:8090"
-    healthcheck:
-      test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
     #      loansdb:
     #        condition: service_healthy
     environment:
@@ -145,16 +112,10 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "pandeyvivek007/cards:s9"
+    image: "pandeyvivek007/cards:s8"
     container_name: cards-ms
     ports:
       - "9000:9000"
-    healthcheck:
-      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
     #      cardsdb:
     #        condition: service_healthy
     environment:
