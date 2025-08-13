@@ -80,10 +80,10 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
@@ -143,7 +143,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>pandeyvivek007/${project.artifactId}:s9</image>
+						<image>pandeyvivek007/${project.artifactId}:s8</image>
 					</to>
 				</configuration>
 			</plugin>
